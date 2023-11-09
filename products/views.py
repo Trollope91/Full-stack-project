@@ -2,6 +2,8 @@ from django.shortcuts import render, get_object_or_404
 from django.contrib import messages
 from django.db.models import Q
 from .models import Product, Category
+from django.db.models.functions import Lower
+
 
 def all_products(request):
     """ A view to show all products, including sorting and search queries """
