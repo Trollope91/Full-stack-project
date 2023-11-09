@@ -16,11 +16,11 @@
             <a class="logo-font font-weight-bold nav-link text-black mr-5" href="#" id="=supplements-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Supplements
             </a>
-            <div class="dropdown-menu border-0" aria-labelledby="protein-link">
-                <a href="" class="dropdown-item">Protein</a>
-                <a href="" class="dropdown-item">Creatine</a>
-                <a href="" class="dropdown-item">Preworoukt</a>
-                <a href="" class="dropdown-item">All Supplements</a>
+            <div class="dropdown-menu border-0" aria-labelledby="supplements-link">
+                <a href="{% url 'products' %}?category=protein" class="dropdown-item">Protein</a>
+                <a href="{% url 'products' %}?category=creatine" class="dropdown-item">Creatine</a>
+                <a href="{% url 'products' %}?category=preworkout" class="dropdown-item">Pre-workout</a>
+                <a href="{% url 'products' %}?category=protein,creatine,preworkout" class="dropdown-item">All Supplements</a>
             </div>
         </li>
 
@@ -29,9 +29,9 @@
                 Accessories
             </a>
             <div class="dropdown-menu border-0" aria-labelledby="Accessories-link">
-                <a href="" class="dropdown-item">Gymwear</a>
-                <a href="" class="dropdown-item">Equipment</a>
-                <a href="" class="dropdown-item">All Accessories</a>
+                <a href="{% url 'products' %}?category=gymwear" class="dropdown-item">Gymwear</a>
+                <a href="{% url 'products' %}?category=equipment" class="dropdown-item">Equipment</a>
+                <a href="{% url 'products' %}?category=gymwear,equipment" class="dropdown-item">All Accessories</a>
             </div>
         </li>
 
