@@ -38,8 +38,21 @@ body {
     color: white;
 }
 
+.btn-outline-black {
+    background: white;
+    color: black !important;
+    border: 1px solid black
+}
+
 .text-shadow {
 text-shadow: 0px 0px 10px rgb(0, 0, 0);
+}
+
+.btn-outline-black:hover,
+.btn-outline-black:active,
+.btn-outline-black:focus {
+    background: black;
+    color: white !important
 }
 
 .shop-now-button:hover,
