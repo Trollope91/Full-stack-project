@@ -101,7 +101,11 @@ a.category-badge > span.badge:hover {
 }
 
 .btt-link {
-    cursor:pointer
+    cursor: pointer;
+}
+
+.cursor-point {
+    cursor: pointer;
 }
 
 /* -------------------------------- Media Queries */
