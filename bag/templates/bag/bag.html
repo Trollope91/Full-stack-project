@@ -1,4 +1,8 @@
-{% extends "base.html" %} {% load static %} {% block page_header %}
+{% extends "base.html" %} 
+{% load static %}
+{% load bag_tools %}
+
+{% block page_header %}
 <div class="container header-container">
   <div class="row">
     <div class="col"></div>
@@ -11,9 +15,9 @@
 <div class="container mb-2">
   <div class="row">
     <div class="col">
-      <hr />
+      <hr>
       <h2 class="logo-font mb-4">Shopping Bag</h2>
-      <hr />
+      <hr>
     </div>
   </div>
 
@@ -48,44 +52,46 @@
               </p>
             </td>
             <td class="py-3">
-              <p class="my-0">${{ item.product.price }}</p>
+              <p class="my-0">{{ item.product.price }}</p>
             </td>
             <td class="py-3 w-25">
-              <form class="form update-form" method="POST" action="">
+              <form class="form update-form" method="POST" action="{% url 'adjust_bag' item.item_id %}">
                 {% csrf_token %}
                 <div class="form-group">
                   <div class="input-group input-group-{{ item.item_id }}">
                       <div class="input-group-prepend">
-                          <button class="decrement-qty btn btn-black btn-sm rounded-0" 
-                              data-item_id="{{ item.item_id }}" id="decrement-qty_{{ item.item_id }}">
+                          <button class="decrement-qty btn btn-sm btn-black rounded-0 decrement-qty_{{ item.item_id }} 
+                              {% if item.size %}decrement-size_{{ item.item_id }}_{{ item.size }}{% endif %}" 
+                              data-item_id="{{ item.item_id }}" data-size="{{ item.size }}">
                               <span>
                                   <i class="fas fa-minus fa-sm"></i>
                               </span>
                           </button>
                       </div>
-                      <input class="form-control form-control-sm qty_input" type="number"
+                      <input class="form-control form-control-sm qty_input id_qty_{{ item.item_id }} 
+                          {% if item.size %}size_{{ item.item_id }}_{{ item.size }}{% endif %}" type="number"
                           name="quantity" value="{{ item.quantity }}" min="1" max="99"
-                          data-item_id="{{ item.item_id }}"
-                          id="id_qty_{{ item.item_id }}">
+                          data-item_id="{{ item.item_id }}" data-size="{{ item.size }}">
                       <div class="input-group-append">
-                          <button class="increment-qty btn btn-black btn-sm rounded-0"
-                              data-item_id="{{ item.item_id }}" id="increment-qty_{{ item.item_id }}">
+                          <button class="increment-qty btn btn-sm btn-black rounded-0 increment-qty_{{ item.item_id }} 
+                              {% if item.size %}increment-size_{{ item.item_id }}_{{ item.size }}{% endif %}"
+                              data-item_id="{{ item.item_id }}" data-size="{{ item.size }}">
                               <span>
                                   <i class="fas fa-plus fa-sm"></i>
                               </span>
                           </button>
                       </div>
                       {% if item.product.has_sizes %}
-                        <input type="hidden" name="product_size" value="{{ item.size }}"
+                        <input type="hidden" name="product_size" value="{{ item.size }}">
                       {% endif %}
                   </div>
               </div>
               </form>
-              <a class="update-link cursor-pointer"><small>Update</small></a>
-              <a class="remove-item float-right cursor-pointer" id="remove_{{ item.item_id }}" data-size="{{ item.size }}"><small>Remove</small></a>       
+              <a class="update-link cursor-point"><small>Update</small></a>
+              <a class="remove-item float-right cursor-point" id="remove_{{ item.item_id }}" data-product_size="{{ item.size }}"><small>Remove</small></a>       
             </td>
             <td class="py-3">
-              <p class="my-0">${{ item.product.price }}</p>
+              <p class="my-0">${{ item.product.price | calc_subtotal:item.quantity }}</p>
             </td>
           </tr>
           {% endfor %}
@@ -149,7 +155,9 @@
 <script type="text/javascript">
     // Update the quantity on click
     $('.update-link').click(function(e) {
+        e.preventDefault();
         var form = $(this).prev('.update-form');
+        console.log(form)
         form.submit();
     })
 
@@ -157,9 +165,9 @@
     $('.remove-item').click(function(e) {
         var csrfToken = "{{ csrf_token }}";
         var itemId = $(this).attr('id').split('remove_')[1];
-        var size = $(this).data('size');
-        var url = `/bag/remove/${itemId}`;
-        var data = {'csrfmiddlewaretoken': csrfToken, 'size': size};
+        var size = $(this).data('product_size');
+        var url = `/bag/remove/${itemId}/`;
+        var data = {'csrfmiddlewaretoken': csrfToken, 'product_size': size};
 
         $.post(url, data)
          .done(function() {
