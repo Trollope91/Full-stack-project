@@ -1,6 +1,10 @@
 import os
 
+from dotenv import load_dotenv
+
 from pathlib import Path
+
+load_dotenv("env.py")
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -10,10 +14,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-efb3$o7pxgem-tsi2q^66j*)s201=u_d9d=y0-z11d^_6_56m2'
+SECRET_KEY = os.getenv("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.getenv("Debug")
 
 ALLOWED_HOSTS = ['8000-trollope91-fullstackpro-g9nh6vcgw6v.ws-eu106.gitpod.io']
 
@@ -173,4 +177,4 @@ STANDARD_DELIVERY_PERCENTAGE = 10
 STRIPE_CURRENCY = 'usd'
 STRIPE_PUBLIC_KEY = os.getenv('STRIPE_PUBLIC_KEY', '')
 STRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET_KEY', '')
-STRIPE_WH_SERET = os.getenv('STRIPE_WH_KEY', '')
+STRIPE_WH_SECRET = os.getenv('STRIPE_WH_KEY', '')
