@@ -58,3 +58,16 @@
   margin:0;
   height:100%;
 }
+
+/*---countries drop down box---*/
+
+select,
+select option {
+  color: #000;
+}
+
+select:invalid,
+select option[value=""] {
+  color: #aab7c4 !important;
+}
+
