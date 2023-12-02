@@ -1,5 +1,5 @@
 import os
-
+import dj_database_url
 from dotenv import load_dotenv
 
 from pathlib import Path
@@ -111,6 +111,8 @@ WSGI_APPLICATION = 'platinum_supps.wsgi.application'
 
 
 # Database
+
+
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
 DATABASES = {

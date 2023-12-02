@@ -61,6 +61,7 @@
           {% csrf_token %}
           <div class="form-row">
             {% with product.has_sizes as s %}
+            {% with product.has_weight as w %}
             {% if s %}
               <div class = "col-12">
                 <p><strong>Size:</strong></p>
@@ -72,7 +73,15 @@
                                         <option value="xl">XL</option>
                                     </select>
               </div>
-            {% endif %}
+            {% elif w %}
+            <div class = "col-12">
+              <p><strong>Size:</strong></p>
+                                  <select class="form-control rounded-0 w-50" name="product_weight" id='id_product_weight'>
+                                      <option value="500g">500g</option>
+                                      <option value="1kg" selected>1kg</option>
+                                      <option value="2kg">2kg</option>
+                                  </select>
+                                  {% endif %}
 
             <div class="col-12">
               <p class="mt-3"><strong>Quantity:</strong></p>
@@ -111,6 +120,7 @@
                   <input type="submit" class="btn btn-black rounded-0 text-uppercase mt-5" value="Add to Bag">
               </div>
               <input type="hidden" name="redirect_url" value="{{ request.path }}">
+              {% endwith %}
               {% endwith %}
           </div>
       </form>
