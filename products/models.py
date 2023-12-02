@@ -31,3 +31,13 @@ class Product(models.Model):
     def __str__(self):
         return self.name
 
+class PromoCodes(models.Model):
+    code = models.CharField(max_length=20)
+    discount_percentage = models.IntegerField(null=False, blank=False)
+    expiry_date = models.DateField(null=False, blank=False)
+    product = models.ForeignKey('Product', null=True, blank=True, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f'{self.code} - {self.product.name}'
+    
+
