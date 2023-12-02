@@ -1,5 +1,5 @@
 <div class="collapse navbar-collapse" id="main-nav">
-    <ul class="navbar-nav w-auto mx-auto">
+    <ul class="navbar-nav menu w-auto mx-auto">
         <li class="nav-item dropdown">
             <a class="logo-font font-weight-bold nav-link text-black mr-5" href="#" id="all-products-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 All Products
@@ -48,3 +48,15 @@
         </li>
     </ul>
 </div>
+
+{% block postloadjs %}
+    <script type="text/javascript">
+        $(document).on("hide.bs.dropdown", ".dropdown", function (event) {
+            $(event.target).find(">.dropdown-menu:first").slideUp();
+        });
+        
+        $(document).on("show.bs.dropdown", ".dropdown", function (event) {
+            $(event.target).find(">.dropdown-menu:first").slideDown();
+        });
+    </script>
+    {% endblock %}

@@ -2,6 +2,19 @@ html {
     height: 100%;
 }
 
+.logo {
+    color: purple;
+}
+
+.mobile-button {
+    padding: 0;
+}
+
+.delivery-banner{
+    background-color:purple;
+    border: purple;
+}
+
 body {
     background: url('/media/homepage_background_cropped.jpg') no-repeat center center fixed;
     background-size: cover;
@@ -28,14 +41,9 @@ body {
 }
 
 .shop-now-button {
-    background: black;
+    background:purple;
     color: white;
     min-width: 260px;
-}
-
-.btn-black {
-    background: black;
-    color: white;
 }
 
 .btn-outline-black {
@@ -46,6 +54,10 @@ body {
 
 .text-shadow {
 text-shadow: 0px 0px 10px rgb(0, 0, 0);
+}
+
+.box-shadow {
+box-shadow: 0px 0px 10px rgb(0, 0, 0);
 }
 
 .btn-outline-black:hover,
@@ -207,22 +219,6 @@ a.category-badge > span.badge:hover {
         height: calc(100vh - 116px);
     }
 }
-
-/* fixed top navbar only on medium and up */
-@media (min-width: 992px) {
-    .fixed-top-desktop-only {
-        position: fixed;
-        top: 0;
-        right: 0;
-        left: 0;
-        z-index: 1030;
-    }
-
-    .header-container {
-        padding-top: 164px;
-    }
-}
-
 /*---- All Auth -----*/
 
 .allauth-form-inner-content p {
