@@ -1,0 +1,1 @@
+web: gunicorn platinum-supps.wsgi:application
