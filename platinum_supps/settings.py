@@ -20,7 +20,7 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 DEBUG = os.getenv("Debug")
 
 ALLOWED_HOSTS = ['8000-trollope91-fullstackpro-g9nh6vcgw6v.ws-eu106.gitpod.io',
-'platinum-supps.herokuapp.com', 'localhost']
+'platinum-supps-a69b518ec505.herokuapp.com', 'localhost']
 
 
 
