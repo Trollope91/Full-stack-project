@@ -225,7 +225,7 @@ STRIPE_WH_SECRET = os.getenv("STRIPE_WH_KEY", "")
 # EMAIL_HOST_USER = 'actualvenusaur@gmail.com'
 # EMAIL_HOST_PASSWORD = 'hpbudutamxsobmih'
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_USE_TLS = True
 EMAIL_PORT = 587
 EMAIL_HOST = 'smtp.gmail.com'
