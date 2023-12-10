@@ -20,7 +20,7 @@ def view_wishlist(request):
         send_mail(
             "Subject Test",
             "Body test",
-            "platinumsupps@example.com",
+            "ljtdev91@gmail.com",
             ["ljt91@gmail.com"],
         )
     except BadHeaderError as e:

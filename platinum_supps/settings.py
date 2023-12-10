@@ -214,16 +214,16 @@ STRIPE_WH_SECRET = os.getenv("STRIPE_WH_KEY", "")
 
 
 if "Debug" in os.environ:
-    EMAIL_USE_TLS = True
-    EMAIL_PORT = 465
+    
+    EMAIL_PORT = 587
     EMAIL_HOST = "smtp.sendgrid.net"
     EMAIL_HOST_USER = os.environ.get("EMAIL_HOST_USER")
     EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_HOST_PASS")
-    DEFAULT_FROM_EMAIL = os.environ.get("EMAIL_HOST_USER")
+    DEFAULT_FROM_EMAIL = 'ljtdev91@gmail.com'
 else:
-    EMAIL_USE_TLS = True
-    EMAIL_PORT = 465
+    
+    EMAIL_PORT = 587
     EMAIL_HOST = "smtp.sendgrid.net"
     EMAIL_HOST_USER = os.environ.get("EMAIL_HOST_USER")
     EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_HOST_PASS")
-    DEFAULT_FROM_EMAIL = os.environ.get("EMAIL_HOST_USER")
+    DEFAULT_FROM_EMAIL = 'ljtdev91@gmail.com'
