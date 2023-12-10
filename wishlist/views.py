@@ -3,6 +3,10 @@ from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.shortcuts import HttpResponse, get_object_or_404, redirect, render
 
+from django.conf import settings
+from django.core.mail import BadHeaderError, send_mail
+from django.http import HttpResponse
+
 from .models import Product, Wishlist
 
 
@@ -11,6 +15,18 @@ def view_wishlist(request):
     """A view to return the wishlist page"""
     user = request.user
     existing_wishlist = Wishlist.objects.filter(user=user).first()
+
+    try:
+        send_mail(
+            "Subject Test",
+            "Body test",
+            "platinumsupps@example.com",
+            ["ljt91@gmail.com"],
+        )
+    except BadHeaderError as e:
+        return HttpResponse("Invalid header found.")
+    except Exception as e:
+        print(f"An error occurred: {e}")
 
     context = {"wishlist": existing_wishlist}
 
