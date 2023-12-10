@@ -1,63 +1,69 @@
-from django.http import HttpResponse
-from .models import Order, OrderLineItem
-from products.models import Product
-from profiles.models import UserProfile
-
-from django.core.mail import send_mail
-from django.template.loader import render_to_string
-from django.conf import settings
-
-import stripe
-
 import json
 import time
 
-class StripeWH_Handler:
-    """ Handle Stripe webhooks"""
+import stripe
+from django.conf import settings
+from django.core.mail import BadHeaderError, send_mail
+from django.http import HttpResponse
 
-    def __init__(self,request):
+
+from django.template.loader import render_to_string
+
+from products.models import Product
+from profiles.models import UserProfile
+
+from .models import Order, OrderLineItem
+
+
+class StripeWH_Handler:
+    """Handle Stripe webhooks"""
+
+    def __init__(self, request):
         self.request = request
 
     def _send_confirmation_email(self, order):
         """Send user a confirmation email"""
         cust_email = order.email
         subject = render_to_string(
-            'checkout/confirmation_emails/confirmation_email_subject.txt',
-            {'order': order})
+            "checkout/confirmation_emails/confirmation_email_subject.txt",
+            {"order": order},
+        )
         body = render_to_string(
-            'checkout/confirmation_emails/confirmation_email_body.txt',
-            {'order': order, 'contact_email': settings.DEFAULT_FROM_EMAIL})
-        
-        send_mail(
-            subject,
-            body,
-            settings.DEFAULT_FROM_EMAIL,
-            [cust_email]
-        )        
-
-    def handle_event(self,event):
-        """ Handle unexpected webhook events """
-
-        return HttpResponse(
-            content=f'Webhook recieved: {event["type"]}',
-            status=200
+            "checkout/confirmation_emails/confirmation_email_body.txt",
+            {"order": order, "contact_email": settings.DEFAULT_FROM_EMAIL},
         )
 
-    def handle_payment_intent_succeeded(self,event):
-        """ Handle the payment_intent_succeeded webhook from stripe  """
+        try:
+            send_mail(
+                subject,
+                body,
+                settings.DEFAULT_FROM_EMAIL,
+                [cust_email],
+            )
+        except BadHeaderError as e:
+            return HttpResponse("Invalid header found.")
+        except Exception as e:
+            print(f"An error occurred: {e}")
+
+
+    def handle_event(self, event):
+        """Handle unexpected webhook events"""
+
+        return HttpResponse(content=f'Webhook recieved: {event["type"]}', status=200)
+
+    def handle_payment_intent_succeeded(self, event):
+        """Handle the payment_intent_succeeded webhook from stripe"""
 
         intent = event.data.object
         pid = intent.id
         bag = intent.metadata.bag
         save_info = intent.metadata.save_info
 
-        stripe_charge = stripe.Charge.retrieve(
-        intent.latest_charge
-        )
+        stripe_charge = stripe.Charge.retrieve(intent.latest_charge)
 
         billing_details = stripe_charge.billing_details
         shipping_details = intent.shipping
-        grand_total = round(stripe_charge.amount / 100, 2) 
+        grand_total = round(stripe_charge.amount / 100, 2)
 
         for field, value in shipping_details.address.items():
             if value == "":
@@ -65,7 +71,7 @@ class StripeWH_Handler:
 
         profile = None
         username = intent.metadata.username
-        if username != 'AnonymousUser':
+        if username != "AnonymousUser":
             profile = UserProfile.objects.get(user__username=username)
             if save_info:
                 profile.default_phone_number = shipping_details.phone
@@ -104,7 +110,8 @@ class StripeWH_Handler:
             self._send_confirmation_email(order)
             return HttpResponse(
                 content=f'Webhook received: {event["type"]} | SUCCESS: Verified order already in database',
-                status=200)
+                status=200,
+            )
         else:
             order = None
             try:
@@ -131,7 +138,7 @@ class StripeWH_Handler:
                         )
                         order_line_item.save()
                     else:
-                        for size, quantity in item_data['items_by_size'].items():
+                        for size, quantity in item_data["items_by_size"].items():
                             order_line_item = OrderLineItem(
                                 order=order,
                                 product=product,
@@ -144,18 +151,16 @@ class StripeWH_Handler:
                     order.delete()
                 return HttpResponse(
                     content=f'Webhook received: {event["type"]} | ERROR: {e}',
-                    status=500)
+                    status=500,
+                )
         return HttpResponse(
             content=f'Webhook received: {event["type"]} | SUCCESS: Created order in webhook',
-            status=200)
-
-    def handle_payment_intent_payment_failed(self,event):
-        """ Handle the payment_intent_failed webhook from stripe  """
-
-        return HttpResponse(
-            content=f'Payment failed Webhook recieved: {event["type"]}',
-            status=200
+            status=200,
         )
 
+    def handle_payment_intent_payment_failed(self, event):
+        """Handle the payment_intent_failed webhook from stripe"""
 
-
+        return HttpResponse(
+            content=f'Payment failed Webhook recieved: {event["type"]}', status=200
+        )

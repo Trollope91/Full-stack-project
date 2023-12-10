@@ -2,10 +2,9 @@ from django.db import models
 
 
 class Category(models.Model):
-    
     class Meta:
-        verbose_name_plural = 'Categories'
-        
+        verbose_name_plural = "Categories"
+
     name = models.CharField(max_length=254)
     friendly_name = models.CharField(max_length=254, null=True, blank=True)
 
@@ -17,7 +16,9 @@ class Category(models.Model):
 
 
 class Product(models.Model):
-    category = models.ForeignKey('Category', null=True, blank=True, on_delete=models.SET_NULL)
+    category = models.ForeignKey(
+        "Category", null=True, blank=True, on_delete=models.SET_NULL
+    )
     sku = models.CharField(max_length=254, null=True, blank=True)
     name = models.CharField(max_length=254)
     description = models.TextField()
@@ -31,13 +32,14 @@ class Product(models.Model):
     def __str__(self):
         return self.name
 
+
 class PromoCodes(models.Model):
     code = models.CharField(max_length=20)
     discount_percentage = models.IntegerField(null=False, blank=False)
     expiry_date = models.DateField(null=False, blank=False)
-    product = models.ForeignKey('Product', null=True, blank=True, on_delete=models.CASCADE)
+    product = models.ForeignKey(
+        "Product", null=True, blank=True, on_delete=models.CASCADE
+    )
 
     def __str__(self):
-        return f'{self.code} - {self.product.name}'
-    
-
+        return f"{self.code} - {self.product.name}"
