@@ -115,7 +115,21 @@
           <tr>
             <td colspan="5" class="pt-5 text-right">
               <h6><strong>Bag Total: ${{ total|floatformat:2 }}</strong></h6>
+              <h6><strong>Total Discount: ${{ request.session.total_discount }}</strong></h6>
               <h6>Delivery: ${{ delivery|floatformat:2 }}</h6>
+                <div class="container">
+                  <div class="row justify-content-end">
+                    <div class="col-md-6">
+                    </div>
+                    <div class="col-md-6 p-0">
+                      <div class="form-group">
+                        <label for="promoCode"><strong>Promo Code</strong></label>
+                        <input type="text" class="form-control" id="promoCode" name="promoCode" placeholder="Enter Promo Code" value="{{ request.session.discount_code }}">
+                        <button id="applyPromoCode">Apply</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               <h4 class="mt-4">
                 <strong>Grand Total: ${{ grand_total|floatformat:2 }}</strong>
               </h4>
@@ -197,5 +211,34 @@
          });
     })
 </script>
+
+<script>
+  $(document).ready(function () {
+      $('#applyPromoCode').click(function () {
+          var promoCode = $('#promoCode').val();
+          var csrfToken = "{{ csrf_token }}";
+
+          // Make a POST request to your backend
+          $.post({
+              url: '/bag/applydiscount/',  // Replace with your backend URL
+              data: {
+                  promoCode: promoCode,
+                  csrfmiddlewaretoken: csrfToken  // Include the CSRF token in the data
+              },
+              // dataType: 'json',  // Specify the expected response format
+          })
+          .done(function (response) {
+                  console.log(response.message);
+                  location.reload();
+
+          })
+          .fail(function (error) {
+              console.error('Failed to apply promo code:', error);
+          });
+      });
+  });
+</script>
+
+
 
 {% endblock %}
