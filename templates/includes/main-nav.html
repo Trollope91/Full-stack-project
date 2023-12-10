@@ -52,11 +52,13 @@
             </div>
         </li>
 
+        {% if user.is_authenticated %}
         <li class="nav-item dropdown">
             <a class="logo-font font-weight-bold nav-link text-black" href="{% url 'wishlist' %}" id="Wishlist-link">
                 Wishlist
             </a>
         </li>
+        {% endif %}
 
 {% block postloadjs %}
     <script type="text/javascript">
