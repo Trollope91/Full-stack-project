@@ -15,21 +15,8 @@ def view_wishlist(request):
     """A view to return the wishlist page"""
     user = request.user
     existing_wishlist = Wishlist.objects.filter(user=user).first()
-
-    try:
-        send_mail(
-            "Subject Test",
-            "Body test",
-            "ljtdev91@gmail.com",
-            ["ljt91@gmail.com"],
-        )
-    except BadHeaderError as e:
-        return HttpResponse("Invalid header found.")
-    except Exception as e:
-        print(f"An error occurred: {e}")
-
     context = {"wishlist": existing_wishlist}
-
+    
     return render(request, "wishlist/wishlist.html", context)
 
 
