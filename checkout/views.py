@@ -33,7 +33,7 @@ def cache_checkout_data(request):
     except Exception as e:
         messages.error(
             request,
-            "Sorry, your pyment cannot be \
+            "Sorry, your payment cannot be \
             processed right now. Please try again later.",
         )
         return HttpResponse(content=e, status=400)
@@ -64,7 +64,6 @@ def checkout(request):
             pid = request.POST.get("client_secret").split("_secret")[0]
             order.stripe_pid = pid
             order.original_bag = json.dumps(bag)
-            # order.total_discount = str(request.session['total_discount'])
             order.total_discount = Decimal(request.session.get("total_discount", "0"))
 
             order.save()
