@@ -164,15 +164,15 @@ The website has the below features:
 
 ## Wishlist
 
-   * 
+   * The user is able to add products to a wishlist page for future browsing, where they can move into the product detials or remove the products
 
-![project images]()
+![project images](project-media/wishlist-image.png)
 
 ## Bag
 
    * The bag holds all the the users purchases and can be edited or moved before moving on to the checkout
 
-![project images]()
+![project images](project-media/shopping-bag.png)
 
 ## Profile and purchase history
 
@@ -186,6 +186,12 @@ The website has the below features:
 
 ![project images](project-media/product-view-image.png)
 
+## Confirmation Email
+
+   * The user recieves an automated email to noftify them of the purchase they made complete with details of the products
+
+![project images](project-media/email-image.png)
+
 ## Error page
 
    * The products can be viewed in greater detail and with a size select applicable to whether the item is a piece of clothing or has a weight
@@ -194,7 +200,7 @@ The website has the below features:
 
 ##  Future implementations
 
-* 
+* Newsletter
 
 # Technologies 
 

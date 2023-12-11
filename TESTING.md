@@ -58,7 +58,21 @@ Back to [README](README.md)
 ## Home page
 * search bar does not find products by description
 * bag icon does not display price of current products
-* 
+
+## Bag
+* updating products with weight category crashes checkout
+* email reply will not take variable from py.env defaulting to "django"
+* mobile view quanitity buttons function but desktop does not
+* promocode application will not submit in desktop view
+* html is broken in mobile view
+* user is able to enter and submit an amount the breaks the checkout
+![bag-bug-one](project-media/checkout-amount-bug.png)
+
+# Checkout
+* email confirmaiton will not send 
+* user details will not retain
+* automated email sender address defaults to "django"
+![checkout-bug-one](project-media/email-django-bug.png)
 
 
 ## Manual testing
@@ -127,6 +141,7 @@ Back to [README](README.md)
 * bag page displays correct information - YES
 * price update functions correctly - YES
 * update toast functions correctly - YES
+* adding the upper limit of number is handled correctly - breaks the bag page (FIXED)
 * remove function works correctly - YES
 * bag total updates correctly - YES
 * delivery updates correctly - YES
@@ -134,8 +149,8 @@ Back to [README](README.md)
 * Return and checkout links function - YES
 * product info displays correctly - YES
 * free delivery display works correctly - YES
-* promocode field functions correctly - 
-* promocode discount is applied correctly - 
+* promocode field functions correctly - promocode only functioned in mobile view (FIXED)
+* promocode discount is applied correctly - YES
 
 **checkout**
 
@@ -145,11 +160,16 @@ Back to [README](README.md)
 * grand total is calculated correclty - YES
 * users detais are retained from past orders - YES
 * checking out functions correctly - YES
-* automated email is sent out - FAIL
+* automated email is sent out - FAIL - FIXED (FIXED)
+* automated email pulls correct details to body - email has erroneous sender mail "django"
 
 **wishlist**
 
-* 
+* products can be added to wishlist - YES
+* products can be removed from wishlist - YES
+* products are linked backed to product view - YES
+* wishlist page is not accessible without logging in - YES
+* add to wish list button is accessible to user without an account - YES
 
 
 ## Automated testing
