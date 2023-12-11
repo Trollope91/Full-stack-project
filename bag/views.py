@@ -86,7 +86,7 @@ def adjust_bag(request, item_id):
     if "product_size" in request.POST:
         size = request.POST["product_size"]
     if "product_weight" in request.POST:
-        size = request.POST["product_weight"]
+        weight = request.POST["product_weight"]
 
     bag = request.session.get("bag", {})
 
