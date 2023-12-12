@@ -1,74 +1,89 @@
 <div class="collapse navbar-collapse" id="main-nav">
     <ul class="navbar-nav menu w-auto mx-auto">
         <li class="nav-item d-block d-md-none">
-            <a class="logo-font font-weight-bold nav-link text-black mr-5" href="{% url 'home' %}" id="home-link">
-                Home
-            </a>
+            <a class="logo-font font-weight-bold nav-link text-black mr-5"
+               href="{% url 'home' %}"
+               id="home-link">Home</a>
         </li>
         <li class="nav-item dropdown">
-            <a class="logo-font font-weight-bold nav-link text-black mr-5" href="#" id="all-products-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                All Products
-            </a>
+            <a class="logo-font font-weight-bold nav-link text-black mr-5"
+               href="#"
+               id="all-products-link"
+               data-toggle="dropdown"
+               aria-haspopup="true"
+               aria-expanded="false">All Products</a>
             <div class="dropdown-menu border-0" aria-labelledby="all-products-link">
-                <a href="{% url 'products' %}?sort=price&direction=asc" class="dropdown-item">By Price</a>
-                <a href="{% url 'products' %}?sort=rating&direction=asc" class="dropdown-item ">By Rating</a>
-                <a href="{% url 'products' %}?sort=category&direction=asc" class="dropdown-item ">By Category</a>
+                <a href="{% url 'products' %}?sort=price&direction=asc"
+                   class="dropdown-item">By Price</a>
+                <a href="{% url 'products' %}?sort=rating&direction=asc"
+                   class="dropdown-item ">By Rating</a>
+                <a href="{% url 'products' %}?sort=category&direction=asc"
+                   class="dropdown-item ">By Category</a>
                 <a href="{% url 'products' %}" class="dropdown-item">All Products</a>
             </div>
         </li>
         <li class="nav-item dropdown">
-            <a class="logo-font font-weight-bold nav-link text-black mr-5" href="#" id="supplements-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Supplements
-            </a>
+            <a class="logo-font font-weight-bold nav-link text-black mr-5"
+               href="#"
+               id="supplements-link"
+               data-toggle="dropdown"
+               aria-haspopup="true"
+               aria-expanded="false">Supplements</a>
             <div class="dropdown-menu border-0" aria-labelledby="supplements-link">
                 <a href="{% url 'products' %}?category=protein" class="dropdown-item">Protein</a>
                 <a href="{% url 'products' %}?category=creatine" class="dropdown-item">Creatine</a>
                 <a href="{% url 'products' %}?category=preworkout" class="dropdown-item">Pre-workout</a>
-                <a href="{% url 'products' %}?category=protein,creatine,preworkout" class="dropdown-item">All Supplements</a>
+                <a href="{% url 'products' %}?category=protein,creatine,preworkout"
+                   class="dropdown-item">All Supplements</a>
             </div>
         </li>
-
         <li class="nav-item dropdown">
-            <a class="logo-font font-weight-bold nav-link text-black mr-5" href="#" id="Accessories-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Accessories
-            </a>
+            <a class="logo-font font-weight-bold nav-link text-black mr-5"
+               href="#"
+               id="Accessories-link"
+               data-toggle="dropdown"
+               aria-haspopup="true"
+               aria-expanded="false">Accessories</a>
             <div class="dropdown-menu border-0" aria-labelledby="Accessories-link">
                 <a href="{% url 'products' %}?category=gymwear" class="dropdown-item">Gymwear</a>
                 <a href="{% url 'products' %}?category=equipment" class="dropdown-item">Equipment</a>
-                <a href="{% url 'products' %}?category=gymwear,equipment" class="dropdown-item">All Accessories</a>
+                <a href="{% url 'products' %}?category=gymwear,equipment"
+                   class="dropdown-item">All Accessories</a>
             </div>
         </li>
-
         <li class="nav-item dropdown">
-            <a class="logo-font font-weight-bold nav-link text-black mr-5" href="#" id="specials-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Special Offers
-            </a>
+            <a class="logo-font font-weight-bold nav-link text-black mr-5"
+               href="#"
+               id="specials-link"
+               data-toggle="dropdown"
+               aria-haspopup="true"
+               aria-expanded="false">Special Offers</a>
             <div class="dropdown-menu border-0" aria-labelledby="specials-link">
-                <a href="" class="dropdown-item">New Arrivals</a>
-                <a href="" class="dropdown-item">Deals</a>
-                <a href="" class="dropdown-item">Clearance</a>
-                <a href="" class="dropdown-item">All Specials</a>
+                <a href="{% url 'products' %}?category=new_arrivals"
+                   class="dropdown-item">New Arrivals</a>
+                <a href="{% url 'products' %}?category=deals" class="dropdown-item">Deals</a>
+                <a href="{% url 'products' %}?category=clearance" class="dropdown-item">Clearance</a>
+                <a href="{% url 'products' %}?category=new_arrivals,deals,clearance"
+                   class="dropdown-item">All Specials</a>
             </div>
         </li>
-
         {% if user.is_authenticated %}
-        <li class="nav-item dropdown">
-            <a class="logo-font font-weight-bold nav-link text-black" href="{% url 'wishlist' %}" id="Wishlist-link">
-                Wishlist
-            </a>
-        </li>
-    </ul>
-</div>
-        {% endif %}
-
+            <li class="nav-item dropdown">
+                <a class="logo-font font-weight-bold nav-link text-black"
+                   href="{% url 'wishlist' %}"
+                   id="Wishlist-link">Wishlist</a>
+            </li>
+        </ul>
+    </div>
+{% endif %}
 {% block postloadjs %}
     <script>
-        $(document).on("hide.bs.dropdown", ".dropdown", function (event) {
-            $(event.target).find(">.dropdown-menu:first").slideUp();
-        });
-        
-        $(document).on("show.bs.dropdown", ".dropdown", function (event) {
-            $(event.target).find(">.dropdown-menu:first").slideDown();
-        });
+                $(document).on("hide.bs.dropdown", ".dropdown", function (event) {
+                    $(event.target).find(">.dropdown-menu:first").slideUp();
+                });
+
+                $(document).on("show.bs.dropdown", ".dropdown", function (event) {
+                    $(event.target).find(">.dropdown-menu:first").slideDown();
+                });
     </script>
-    {% endblock %}
+{% endblock %}
