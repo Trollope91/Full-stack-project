@@ -52,7 +52,8 @@
                                             <a href="{% url 'product_detail' item.id %}"
                                                class="btn btn-outline-black rounded-0 btn-lg mb-2"
                                                data-action="products">Buy</a>
-                                            <button id="remove_{{ item.id }}"
+                                            <button
+                                                    data-id="remove_{{ item.id }}"
                                                     type="button"
                                                     class="btn btn-outline-black rounded-0 btn-lg remove-item"
                                                     data-action="wishlist">Remove</button>
@@ -83,7 +84,7 @@
     $('.remove-item').click(function(e) {
       
         var csrfToken = "{{ csrf_token }}";
-        var itemId = $(this).attr('id').split('remove_')[1];
+        var itemId = $(this).attr('data-id').split('remove_')[1];
         var url = `/wishlist/remove/${itemId}/`;
         var data = {
           'csrfmiddlewaretoken': csrfToken
