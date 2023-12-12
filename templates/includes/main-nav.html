@@ -16,9 +16,8 @@
                 <a href="{% url 'products' %}" class="dropdown-item">All Products</a>
             </div>
         </li>
-
         <li class="nav-item dropdown">
-            <a class="logo-font font-weight-bold nav-link text-black mr-5" href="#" id="=supplements-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <a class="logo-font font-weight-bold nav-link text-black mr-5" href="#" id="supplements-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Supplements
             </a>
             <div class="dropdown-menu border-0" aria-labelledby="supplements-link">
@@ -58,10 +57,12 @@
                 Wishlist
             </a>
         </li>
+    </ul>
+</div>
         {% endif %}
 
 {% block postloadjs %}
-    <script type="text/javascript">
+    <script>
         $(document).on("hide.bs.dropdown", ".dropdown", function (event) {
             $(event.target).find(">.dropdown-menu:first").slideUp();
         });

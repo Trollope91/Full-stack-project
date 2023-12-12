@@ -1,4 +1,4 @@
-<script type="text/javascript">
+<script>
 
   // Disables +/- buttons outside 1-99 range.
 
@@ -22,6 +22,7 @@
   }
 
   //  enables/disables of all inputs on page load
+
   var allQtyInputs = $('.qty_input');
   for(var i = 0; i < allQtyInputs.length; i++){
       var itemId = $(allQtyInputs[i]).data('item_id');
@@ -30,6 +31,7 @@
   }
 
   // Check enable/disable every time input is changed
+
   $('.qty_input').change(function() {
       var itemId = $(this).data('item_id');
       var size = $(this).data('size');
@@ -37,6 +39,7 @@
   });
 
   // Increment quantity
+
   $('.increment-qty').click(function(e) {
      e.preventDefault();
      var itemId = $(this).data('item_id');
@@ -53,6 +56,7 @@
   });
 
   // Decrement quantity
+  
   $('.decrement-qty').click(function(e) {
      e.preventDefault();
      var itemId = $(this).data('item_id');

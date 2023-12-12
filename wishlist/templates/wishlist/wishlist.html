@@ -41,6 +41,7 @@
               <img
                 class="img-fluid rounded"
                 src="{{ item.image.url }}"
+                alt="wishlist-image"
               />
             </td>
             <td class="py-3">
@@ -64,9 +65,6 @@
           
           </tr>
           {% endfor %}
-
-          <tr>
-          </tr>
         </table>
       </div>
       {% else %}
@@ -81,7 +79,7 @@
 {{ block.super }}
 {% include 'products/includes/quantity_input_script.html'%}
 
-<script type="text/javascript">
+<script>
     $('.update-link').click(function(e) {
         e.preventDefault();
         var form = $(this).prev('.update-form');
