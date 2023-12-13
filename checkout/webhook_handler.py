@@ -22,7 +22,9 @@ class StripeWH_Handler:
         self.request = request
 
     def _send_confirmation_email(self, order):
-        """Send user a confirmation email"""
+        """
+        Send user a confirmation email
+        """
         cust_email = order.email
         subject = render_to_string(
             "checkout/confirmation_emails/confirmation_email_subject.txt",
@@ -47,12 +49,16 @@ class StripeWH_Handler:
 
 
     def handle_event(self, event):
-        """Handle unexpected webhook events"""
+        """
+        Handle unexpected webhook events
+        """
 
         return HttpResponse(content=f'Webhook recieved: {event["type"]}', status=200)
 
     def handle_payment_intent_succeeded(self, event):
-        """Handle the payment_intent_succeeded webhook from stripe"""
+        """
+        Handle the payment_intent_succeeded webhook from stripe
+        """
 
         intent = event.data.object
         pid = intent.id

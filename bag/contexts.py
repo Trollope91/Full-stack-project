@@ -108,70 +108,61 @@ def bag_contents(request):
 
     return context
 
-
-# def apply_discount_to_product(request, product, total, discount_code):
-#     if discount_code:
-#         try:
-#             # Retrieve the discount code from the database
-#             discount = PromoCodes.objects.get(code=discount_code)
-#             # Apply the discount to the total
-#             #discount_percentage = Decimal(discount.discount_percentage) / 100
-
-#             # Retrieve the current total from the session
-#             #total = request.session.get('total', 0)
-
-#             # Calculate the discounted total
-#             discountValue = round(((total / 100) * discount.discount_percentage),2)
-#             total = (total - discountValue)
-#             request.session['total_discount'] = str(request.session.get('total_discount', Decimal('0')) + discountValue)
-
-#             request.session['total_discount'] = str(request.session.get('total_discount', Decimal('0')) + discountValue)
-#             #request.session['total_discount'] = request.session.get('total_discount', 0) + discountValue
-
-#             #request.session['total_discount'] = discountValue
-
-#             #discounted_total = total - (total * discount_percentage)
-#             #total -= discount.amount  # You may need to adjust this based on how your discount model is structured
-#         except ObjectDoesNotExist:
-#             # Handle the case where the discount code is not valid
-#             pass
-#     return total
-
-
 def apply_discount_to_product(request, product, total, discount_code, quantity):
     if discount_code:
         try:
-            # Retrieve the discount code from the database
+            """
+            Retrieve the discount code from the database
+            """
+
             discount = PromoCodes.objects.get(code=discount_code)
 
             if discount.product.id == product.id:
-                # Calculate the discounted total
+                """
+                Calculate the discounted total
+                """
                 discountValue = round(
                     (((product.price * quantity) / 100) * discount.discount_percentage),
                     2,
                 )
 
-                # Retrieve the current total from the session
+                """
+                Retrieve the current total from the session
+                """
                 original_total_discount = Decimal(
                     request.session.get("total_discount", "0")
                 )
 
-                # Update the session with the new discounted total
+                """
+                 Update the session with the new discounted total
+                """
+
                 request.session["total_discount"] = str(
                     original_total_discount + discountValue
                 )
 
-                # Calculate the updated total after applying the discount
+                """
+                Calculate the updated total after applying the discount
+                """
                 discounted_total = total - discountValue
+                
+                """
+                If you need to use the original total elsewhere, you can keep it in the session
+                """
 
-                # If you need to use the original total elsewhere, you can keep it in the session
                 request.session["original_total"] = str(total)
 
-                # Return the discounted total
+                """ 
+                Return the discounted total
+                """
                 return discounted_total
         except PromoCodes.DoesNotExist:
-            # Handle the case where the discount code is not valid
+            """
+            Handle the case where the discount code is not valid
+            """
             pass
 
-    # Return the original total if no discount is applied or an exception occurs
+    """
+    Return the original total if no discount is applied or an exception occurs
+    """
     return total

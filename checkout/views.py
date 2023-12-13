@@ -15,7 +15,9 @@ from profiles.models import UserProfile
 from .forms import OrderForm
 from .models import Order, OrderLineItem
 
-
+"""
+Retrieve PaymentIntent ID from the client_secret, modify PaymentIntent to cache bag contents and additional data
+"""
 @require_POST
 def cache_checkout_data(request):
     try:
@@ -43,6 +45,9 @@ def checkout(request):
     stripe_public_key = settings.STRIPE_PUBLIC_KEY
     stripe_secret_key = settings.STRIPE_SECRET_KEY
 
+    """
+    Handle the form submission for order placement
+    """
     if request.method == "POST":
         bag = request.session.get("bag", {})
 
@@ -131,7 +136,10 @@ def checkout(request):
             currency=settings.STRIPE_CURRENCY,
         )
 
-        # Attempt to prefill the form with any info the user maintains in their profile
+        """
+        Attempt to prefill the form with any info the user maintains in their profile
+        """
+
         if request.user.is_authenticated:
             try:
                 profile = UserProfile.objects.get(user=request.user)
@@ -171,7 +179,9 @@ def checkout(request):
 
 
 def checkout_success(request, order_number):
-    """Handle successful checkouts"""
+    """
+    Handle successful checkouts
+    """
     save_info = request.session.get("save_info")
     order = get_object_or_404(Order, order_number=order_number)
 

@@ -8,7 +8,9 @@ from products.models import Product
 
 
 class UserProfile(models.Model):
-    """A user profile model for holding delivery information and order history"""
+    """
+    A user profile model for holding delivery information and order history
+    """
 
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     default_phone_number = models.CharField(max_length=20, null=True, blank=True)
@@ -25,7 +27,9 @@ class UserProfile(models.Model):
 
 @receiver(post_save, sender=User)
 def create_or_update_user_profile(sender, instance, created, **kwargs):
-    """Creating or updating the user profile"""
+    """
+    Creating or updating the user profile
+    """
     if created:
         UserProfile.objects.create(user=instance)
     instance.userprofile.save()

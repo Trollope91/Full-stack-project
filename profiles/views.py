@@ -10,7 +10,9 @@ from .models import UserProfile
 
 @login_required
 def profile(request):
-    """Display user's profile."""
+    """
+    Display user's profile.
+    """
     profile = get_object_or_404(UserProfile, user=request.user)
 
     if request.method == "POST":

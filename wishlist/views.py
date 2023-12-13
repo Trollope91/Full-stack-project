@@ -12,7 +12,9 @@ from .models import Product, Wishlist
 
 @login_required
 def view_wishlist(request):
-    """A view to return the wishlist page"""
+    """
+    A view to return the wishlist page
+    """
     user = request.user
     existing_wishlist = Wishlist.objects.filter(user=user).first()
     context = {"wishlist": existing_wishlist}
@@ -29,6 +31,9 @@ def add_to_wishlist(request, item_id):
 
     if existing_wishlist:
         if product not in existing_wishlist.products.all():
+            """
+            Add product to the wishlist
+            """
             existing_wishlist.products.add(product)
             existing_wishlist.save()
             messages.info(request, f"{product.name} has been added to the wishlist")
@@ -53,6 +58,9 @@ def remove_from_wishlist(request, item_id):
 
     if wishlist:
         if product in wishlist.products.all():
+            """
+            Remove product from wishlist
+            """
             wishlist.products.remove(product)
             wishlist.save()
             messages.success(
