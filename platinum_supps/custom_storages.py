@@ -6,6 +6,7 @@ class StaticStorage(S3Boto3Storage):
     """
     Custom storage class for handling static files on Amazon S3
     """
+
     location = settings.STATICFILES_LOCATION
 
 

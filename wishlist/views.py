@@ -1,11 +1,10 @@
+from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
-from django.db.models import Q
-from django.shortcuts import HttpResponse, get_object_or_404, redirect, render
-
-from django.conf import settings
 from django.core.mail import BadHeaderError, send_mail
+from django.db.models import Q
 from django.http import HttpResponse
+from django.shortcuts import HttpResponse, get_object_or_404, redirect, render
 
 from .models import Product, Wishlist
 
@@ -18,7 +17,7 @@ def view_wishlist(request):
     user = request.user
     existing_wishlist = Wishlist.objects.filter(user=user).first()
     context = {"wishlist": existing_wishlist}
-    
+
     return render(request, "wishlist/wishlist.html", context)
 
 

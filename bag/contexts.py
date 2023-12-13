@@ -108,6 +108,7 @@ def bag_contents(request):
 
     return context
 
+
 def apply_discount_to_product(request, product, total, discount_code, quantity):
     if discount_code:
         try:
@@ -145,7 +146,7 @@ def apply_discount_to_product(request, product, total, discount_code, quantity):
                 Calculate the updated total after applying the discount
                 """
                 discounted_total = total - discountValue
-                
+
                 """
                 If you need to use the original total elsewhere, you can keep it in the session
                 """

@@ -4,7 +4,8 @@ from decimal import Decimal
 import stripe
 from django.conf import settings
 from django.contrib import messages
-from django.shortcuts import HttpResponse, get_object_or_404, redirect, render, reverse
+from django.shortcuts import (HttpResponse, get_object_or_404, redirect,
+                              render, reverse)
 from django.views.decorators.http import require_POST
 
 from bag.contexts import bag_contents
@@ -18,6 +19,8 @@ from .models import Order, OrderLineItem
 """
 Retrieve PaymentIntent ID from the client_secret, modify PaymentIntent to cache bag contents and additional data
 """
+
+
 @require_POST
 def cache_checkout_data(request):
     try:

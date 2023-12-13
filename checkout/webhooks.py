@@ -36,10 +36,9 @@ def webhook(request):
         "payment_intent.payment_failed": handler.handle_payment_intent_payment_failed,
     }
 
-
     event_type = event["type"]
 
     event_handler = event_map.get(event_type, handler.handle_event)
-    
+
     response = event_handler(event)
     return response

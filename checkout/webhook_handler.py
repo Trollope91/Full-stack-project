@@ -5,8 +5,6 @@ import stripe
 from django.conf import settings
 from django.core.mail import BadHeaderError, send_mail
 from django.http import HttpResponse
-
-
 from django.template.loader import render_to_string
 
 from products.models import Product
@@ -46,7 +44,6 @@ class StripeWH_Handler:
             return HttpResponse("Invalid header found.")
         except Exception as e:
             print(f"An error occurred: {e}")
-
 
     def handle_event(self, event):
         """

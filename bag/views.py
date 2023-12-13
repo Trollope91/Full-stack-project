@@ -1,5 +1,6 @@
 from django.contrib import messages
-from django.shortcuts import HttpResponse, get_object_or_404, redirect, render, reverse
+from django.shortcuts import (HttpResponse, get_object_or_404, redirect,
+                              render, reverse)
 
 from products.models import Product
 
@@ -168,9 +169,6 @@ def remove_from_bag(request, item_id):
 
 def apply_discount(request):
     if request.method == "POST":
-        discount_code = request.POST.get(
-            "promoCode", None
-        )
+        discount_code = request.POST.get("promoCode", None)
         request.session["discount_code"] = discount_code
     return HttpResponse(status=200)
-
