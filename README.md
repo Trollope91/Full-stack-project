@@ -129,6 +129,31 @@ I opted for ElephantSQL, a relational database built on PostgreSQL, over MongoDB
 
 ![database-schema](project-media/schema.jpg)
 
+## Key Models
+
+### User
+* created on registration 
+* holds information 
+
+### Product
+* Holds data relating to the individual products such as name, descriction etc
+* User is able to set Size or Weight here as well as rating
+* Image url is also handled by this model
+
+### Promocodes
+* promocodes relate to the product as a many to one
+* it constains the code itself to be set by admin that can then be applied to the specific product in the checkout
+* it also contains data for a code expiry date
+
+### Wishlist
+* the wish list model contains the data relating the user to the products contained within it
+
+### Orders
+* holds the specific data of each order
+* tied to the user in a many to one relationship
+
+
+
 ### Colors
 
 Main colours used in the project:
