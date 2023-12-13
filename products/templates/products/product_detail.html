@@ -163,6 +163,23 @@
         form.attr('action', url).submit();
     });
 });
+</script>
 
-    </script>
+<script>
+    $(document).ready(function () {
+      $(".qty_input").on("keydown", function (e) {
+        e.preventDefault();
+      });
+      
+      $(".qty_input").on("input", function () {
+        var value = parseInt($(this).val(), 10);
+  
+        if (isNaN(value) || value < 1 || value > 99) {
+          value = Math.min(Math.max(value, 1), 99);
+          $(this).val(value);
+        }
+      });
+    });
+  </script>
+
 {% endblock %}
