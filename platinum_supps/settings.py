@@ -17,7 +17,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.getenv("Debug")
+DEBUG = False
 
 ALLOWED_HOSTS = [
     "8000-trollope91-fullstackpro-g9nh6vcgw6v.ws-eu106.gitpod.io",
@@ -25,6 +25,7 @@ ALLOWED_HOSTS = [
     "localhost",
 ]
 
+MIDDLEWARE = ['path.to.CatchALLExceptionsMiddleware']
 
 # Application definition
 
