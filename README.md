@@ -152,7 +152,7 @@ I opted for ElephantSQL, a relational database built on PostgreSQL, over MongoDB
 * holds the specific data of each order
 * tied to the user in a many to one relationship
 
-
+## Design Choices
 
 ### Colors
 
@@ -279,15 +279,19 @@ The website has the below features:
 
 # Testing
 
-## Testing
-
 Full details of testing can be found [here](TESTING.md).
 
 # Deployment
 
-I used Gitpod as a development environment where I committed all changes to git version control system.
+Prerequisites
 
-The application was deployed to heroku for the live site.
+Python 3
+
+PIP 
+
+Git 
+
+Amazon AWS S3 Bucket
 
 ## Github Repository
 
@@ -296,19 +300,70 @@ https://github.com/Trollope91/Full-stack-project
 
 ## Copying the repository
 
-A user can make a local copy of my repository by going to the GitHub repository page of my project and clicking on the "Code" button which will open a dropdown menu, select the protocol (HTTPS or SSH) for the clone URL and copy it to the clipboard.
+Navigate to the repository and click on "Code." In the Clone HTTPS section, copy the repository's clone URL.
 
-Open a terminal on their local machine and navigate to the directory where they want to store the project then type the command "git clone" followed by the URL they copied in step 3, and press Enter.
-Wait for the cloning process to complete.
+Open Git Bash in your local Integrated Development Environment (IDE). Change the current working directory to the desired location for the cloned directory.
 
-Git will start cloning the repository onto your local machine. Depending on the size of the repository and your internet connection, this may take a moment.
+Use the command "git clone" followed by pasting the URL
 
-Once the cloning process is complete, you will have a local copy of the GitHub repository in the directory you specified
+Create an env.py file that will require the following variables in order to function 
 
-## Forking the repository
+* import os
+* os.environ.setdefault("SECRET_KEY", "your key")
+* os.environ.setdefault("DEVELOPMENT", "True")
+* os.environ.setdefault('STRIPE_PUBLIC_KEY', 'your key')
+* os.environ.setdefault('STRIPE_SECRET_KEY', 'your key')
+* os.environ.setdefault('STRIPE_WH_SECRET', 'your key')
 
-To fork the repository the user can go to the GitHub repository page of the project and click on the "Fork" button in the upper right-hand corner of the page, select the account they want to fork the project to and then wait for GitHub to create a copy of the project in their account.
-Once the fork is complete the project will be available under their account with the option to clone to their local machine.
+you secret and public stripe keys will need to be taken from your personal account under the developers tab with the wh key being found inside the webhook
+
+To set up the application, begin by installing the necessary dependencies with the command pip3 install -r requirements.txt.
+
+Afterward, apply database migrations by executing python manage.py migrate.
+
+Create a new superuser and input the required details using python manage.py createsuperuser.
+
+With these configurations in place, you can run the application locally by executing python manage.py runserver.
+
+# Setting up a Bucket
+
+Begin by creating an Amazon AWS account and navigating to S3 to initiate the creation of a new bucket. Allow public access and confirm the acknowledgment.
+
+In the Properties section, enable Static website hosting, set Index.html as the index document, and save the settings.
+
+Configure Cross-Origin Resource Sharing (CORS) under Permissions using the specified rules.
+
+Proceed to create a Bucket Policy by generating it and noting the Bucket ARN. Choose S3 Bucket Policy as the policy type, enter "*" for Principal, and add a statement.
+
+Generate the policy, copy the JSON document, and paste it into the Edit Bucket policy tab. Save the changes.
+
+In the Access Control List (ACL) section, enable public access by checking the List option for Everyone, accepting that the bucket is accessible worldwide. Confirm and save the changes.
+
+# Setting up acces and indentity management
+
+Navigate to the IAM dashboard within AWS and select "User Groups." Create a new group and proceed without adding a policy initially.
+
+After creating the group, select "Policies" and create a policy. In the JSON tab, import the managed policy "AmazonS3FullAccess." Modify the resource to include the Bucket ARN from the earlier creation of the Bucket Policy, specifying both the bucket itself and its contents.
+
+Proceed to the next step and review the policy, providing it with a name and a description before creating the policy.
+
+Return to User Groups, choose the previously created group, and under Permissions, add permissions by attaching the newly created policy.
+
+Under Users, create a user with a chosen name and proceed to the next steps. Add the user to the previously created group, review the configuration, and create the user.
+
+Ensure to download the provided .csv file containing the access key and secret access key, emphasizing that this download option will not be available again.
+
+# Connect django to s3
+
+Install the following packages
+
+* pip3 install django-storages
+* pip3 install boto3
+* pip3 freeze > requirements.txt
+
+Include the values from the downloaded .csv file in your Heroku Config Vars
+
+Remove the DISABLE_COLLECTSTATIC variable from your Config Vars and proceed to deploy your Heroku app. With your S3 bucket configuration completed, establish a new folder named "media" (at the same level as the recently added "static" folder). Upload necessary media files to this folder, ensuring they have public accessibility under Permissions.
 
 ___
 # Credits
