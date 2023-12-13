@@ -6,7 +6,9 @@ Back to [README](README.md)
 
 ### Responsive test
 
- ![desktop-resolution-test]()
+ ![desktop-resolution-test](project-media/resolution.jpg)
+
+ All pages displayed correctly showing relevant information in desktop down to the galaxy folds resolution
 
 
 ## Compatibility testing
@@ -58,6 +60,7 @@ Back to [README](README.md)
 ## Home page
 * search bar does not find products by description
 * bag icon does not display price of current products
+* formatting html broke django code
 
 ## Bag
 * updating products with weight category crashes checkout
@@ -66,6 +69,7 @@ Back to [README](README.md)
 * promocode application will not submit in desktop view
 * html is broken in mobile view
 * user is able to enter and submit an amount the breaks the checkout
+* updating a product with weight breaks the site
 ![bag-bug-one](project-media/checkout-amount-bug.png)
 
 # Checkout
@@ -73,12 +77,26 @@ Back to [README](README.md)
 * user details will not retain
 * automated email sender address defaults to "django"
 ![checkout-bug-one](project-media/email-django-bug.png)
+* remove functionality broke when implementing mobile includes
+
+# Products
+
+* fitlering options do not function as intended
+
+# Product details
+
+* use of includes causes products with weight only to throw errors in the html
+
+# Wishlist
+
+*
+
 
 
 ## Manual testing
 
 **Sign up and login**
-* register link functions - Does not funciton in mobile view
+* register link functions - Does not funciton in mobile view (Fixed)
 * register function works correctly - YES
 * mismatched email doesn't allow progress - YES
 * mismatched email displays error message - YES
@@ -118,6 +136,7 @@ Back to [README](README.md)
 * sort by category descending functions correctly - YES
 * deleting product functions correctly - YES
 * editing product details updates correctly - YES
+* adding product to products functions correctly - YES
 * removing image functions correctly - YES
 * uploading a new image functions correctly - YES
 * toast message alert displays when editing product - YES
@@ -161,7 +180,7 @@ Back to [README](README.md)
 * users detais are retained from past orders - YES
 * checking out functions correctly - YES
 * automated email is sent out - FAIL - FIXED (FIXED)
-* automated email pulls correct details to body - email has erroneous sender mail "django"
+* automated email pulls correct details to body - email has erroneous sender mail "django" (FIXED)
 
 **wishlist**
 
@@ -178,54 +197,53 @@ I ran [Lighthouse](https://developers.google.com/web/tools/lighthouse/) tool to 
 
 **Home page**
 
-- Performance:
-- Accessibility:
-- Best Practices:
-- SEO: 
+- Performance: 92
+- Accessibility: 85
+- Best Practices: 95
+- SEO: 89
 
 **Products**
 
-- Performance:
-- Accessibility:
-- Best Practices:
-- SEO: 
+- Performance: 94
+- Accessibility: 82
+- Best Practices: 95
+- SEO: 80
 
 **Profile**
 
-- Performance:
-- Accessibility:
-- Best Practices:
-- SEO: 
+- Performance: 90
+- Accessibility: 92
+- Best Practices: 95
+- SEO: 89
 
 **Register**
 
-- Performance:
-- Accessibility:
-- Best Practices:
-- SEO: 
+- Performance:97
+- Accessibility: 90
+- Best Practices: 95
+- SEO: 89
 
 **Bag**
 
-- Performance:
-- Accessibility:
-- Best Practices:
-- SEO: 
+- Performance: 95
+- Accessibility: 80
+- Best Practices: 95
+- SEO: 80
 
 **Checkout**
 
-- Performance:
-- Accessibility:
-- Best Practices:
-- SEO:
+- Performance: 95
+- Accessibility: 85
+- Best Practices: 95
+- SEO: 90
 
 **Wishlist**
 
-- Performance:
-- Accessibility:
-- Best Practices:
-- SEO: 
+- Performance: 96
+- Accessibility: 89
+- Best Practices: 95
+- SEO: 90
 
-I checked accessibility with [Wave Extension](https://wave.webaim.org/extension/) tool to check performance of the website.
 
 ## Code Validation
  At the and of the project I used two websites to validate a code
@@ -247,6 +265,6 @@ I checked accessibility with [Wave Extension](https://wave.webaim.org/extension/
 
 * No errors pretaining to the javascript through out the site
 
-###  [CL Pythno Linter](https://pep8ci.herokuapp.com/#) To format python code to pep 8 compliance
+###  [CL Python Linter](https://pep8ci.herokuapp.com/#) To format python code to pep 8 compliance
 
 * All python code was adjusted to comply the pep8 standards

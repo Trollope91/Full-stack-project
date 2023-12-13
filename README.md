@@ -3,7 +3,7 @@
 
 ## Code institute milestone project four
 
-**[Live demo](https://platinum-supps-a69b518ec505.herokuapp.com/)**
+**[Deployed site click here](https://platinum-supps-a69b518ec505.herokuapp.com/)**
 ---
 
 Welcome to Platinum Supps! your fitness ally and premium supplement and gym equipment haven. At Platinum Supps, we're dedicated to fueling your fitness journey with top-quality products. From science-backed supplements to cutting-edge gym gear, we've got your back. embrace the excellence, and let's achieve your fitness goals together. Welcome to Platinum Supps – where strength meets style!
@@ -127,11 +127,15 @@ I used balsamiq to create the initial wireframes.
 
 I opted for ElephantSQL, a relational database built on PostgreSQL, over MongoDB due to the structured nature of my data and project requirements. ElephantSQL's relational model supports clear data relationships, complex queries, and ensures ACID compliance, making it suitable for scenarios where data integrity and consistency are paramount. The mature ecosystem and scalability of PostgreSQL further align with the needs of my application, contributing to a robust and reliable database solution.
 
-![database-schema]()
+![database-schema](project-media/schema.jpg)
 
 ### Colors
 
-Main colours used in the project: 
+Main colours used in the project:
+
+hex#345171 in the background image of the home
+
+hex#800080 for the navbar accents and logo
 
 ### Images
 
@@ -184,19 +188,13 @@ The website has the below features:
 
    * A promo code can be created by an admin and applied to a product with an expiary date that can then be applied to any given product in the database
 
-![project images](project-media/product-view-image.png)
+![project images](project-media/promocode-image.png)
 
 ## Confirmation Email
 
    * The user recieves an automated email to noftify them of the purchase they made complete with details of the products
 
 ![project images](project-media/email-image.png)
-
-## Error page
-
-   * The products can be viewed in greater detail and with a size select applicable to whether the item is a piece of clothing or has a weight
-
-![project images]()
 
 ##  Future implementations
 
@@ -211,6 +209,8 @@ The website has the below features:
 ### CSS
 * As a style language.
 ### Javascript
+* As a style language.
+### JQuery
 * As a style language.
 
 ## Frameworks
@@ -244,6 +244,10 @@ The website has the below features:
 * As an image editor.
 ### DB browser (SQLite)
 * To aid in navigations and creation of db schema
+### Black Python linter
+* To facilitate good formatting of python code
+### Djlint
+* To aid formatting HTML with django
 ### [CI Python Linter](https://pep8ci.herokuapp.com/#)
 * To help in linting the python code to pep8 compliance
 
@@ -287,6 +291,8 @@ ___
 * To complete this project I used Code Institute student template: [gitpod full template](https://github.com/Code-Institute-Org/gitpod-full-template)
 
 * Ideas and knowledge library:
+
+    * [codeinstitute.net](https://www.codeinstitute.net)
 
     * [w3schools.com](https://www.w3schools.com)
 
