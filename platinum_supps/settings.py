@@ -25,7 +25,6 @@ ALLOWED_HOSTS = [
     "localhost",
 ]
 
-MIDDLEWARE = ['path.to.CatchALLExceptionsMiddleware']
 
 # Application definition
 
