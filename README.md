@@ -152,9 +152,9 @@ I opted for ElephantSQL, a relational database built on PostgreSQL, over MongoDB
 * holds the specific data of each order
 * tied to the user in a many to one relationship
 
-## Design Choices
+# color paletet and imagery
 
-### Colors
+## Colors
 
 Main colours used in the project:
 
@@ -162,9 +162,10 @@ hex#345171 in the background image of the home
 
 hex#800080 for the navbar accents and logo
 
-### Images
+## Images
 
 -   Imagery used in the project was either pulled from real sources for products or produced by myself such as the backdrop to the home page
+- Real products were used for the images in the database
 
 # Features
 

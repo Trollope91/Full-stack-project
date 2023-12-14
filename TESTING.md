@@ -57,41 +57,32 @@ Back to [README](README.md)
 
 # Issues found during site development
 
-## Home page
 * search bar does not find products by description
+
 * bag icon does not display price of current products
 * formatting html broke django code
-
-## Bag
 * updating products with weight category crashes checkout
 * email reply will not take variable from py.env defaulting to "django"
 * mobile view quanitity buttons function but desktop does not
 * promocode application will not submit in desktop view
-* html is broken in mobile view
-* user is able to enter and submit an amount the breaks the checkout
+* product html is broken in mobile view
 * updating a product with weight breaks the site
+* user is able to enter and submit an amount the breaks the checkout in product details and bag
+
 ![bag-bug-one](project-media/checkout-amount-bug.png)
 
-# Checkout
 * email confirmaiton will not send 
 * user details will not retain
 * automated email sender address defaults to "django"
+
 ![checkout-bug-one](project-media/email-django-bug.png)
 * remove functionality broke when implementing mobile includes
 
-# Products
-
 * fitlering options do not function as intended
-
-# Product details
 
 * use of includes causes products with weight only to throw errors in the html
 
-# Wishlist
-
-*
-
-
+* heroku pulling var as string causing debug not to set as false
 
 ## Manual testing
 
