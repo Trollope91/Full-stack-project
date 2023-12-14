@@ -152,7 +152,7 @@ I opted for ElephantSQL, a relational database built on PostgreSQL, over MongoDB
 * holds the specific data of each order
 * tied to the user in a many to one relationship
 
-# color paletet and imagery
+# color palette and imagery
 
 ## Colors
 
